@@ -4,6 +4,10 @@
 # 1. Linear Regression using scikit-learn (with CSV loading, missing values, encoding, normalization)
 # ------------------------
 import pandas as pd
+import tensorflow as tf
+import torch
+import torch.nn as nn
+import torch.optim as optim
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
@@ -11,6 +15,15 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import make_classification
+from torch.utils.data import TensorDataset, DataLoader
+
 
 # Load CSV
 df = pd.read_csv(shipment_data.csv")  # Replace with your CSV path
@@ -60,9 +73,7 @@ print("1. Linear Regression MSE:", mse)
 # ------------------------
 # 2. Decision Tree Classifier using scikit-learn
 # ------------------------
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.datasets import load_iris
-from sklearn.metrics import accuracy_score
+
 
 iris = load_iris()
 X, y = iris.data, iris.target
@@ -79,10 +90,6 @@ print("2. Accuracy:", acc)
 # ------------------------
 # 3. Feedforward Neural Network using TensorFlow
 # ------------------------
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from sklearn.preprocessing import StandardScaler
 
 (X_train, y_train), (X_test, y_test) = tf.keras.datasets.boston_housing.load_data()
 
@@ -129,9 +136,7 @@ print("4. Test Accuracy:", acc)
 # ------------------------
 # 5. Linear Regression using PyTorch
 # ------------------------
-import torch
-import torch.nn as nn
-import torch.optim as optim
+
 
 X = torch.randn(100, 1)
 y = 3 * X + 2 + 0.1 * torch.randn(100, 1)
@@ -153,8 +158,6 @@ print("5. Final Loss:", loss.item())
 # ------------------------
 # 6. Classification using PyTorch Neural Network
 # ------------------------
-from sklearn.datasets import make_classification
-from torch.utils.data import TensorDataset, DataLoader
 
 X, y = make_classification(n_samples=500, n_features=20, n_classes=2, random_state=42)
 X = torch.tensor(X, dtype=torch.float32)
